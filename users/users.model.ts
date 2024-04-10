@@ -25,6 +25,7 @@ const UserSchema = new Schema({
             size: Number
         }, default: GUEST_PICTURE
     }, 
+    userFriends: [{type: String, unique: true}]
     
 //some features under consideration
 
