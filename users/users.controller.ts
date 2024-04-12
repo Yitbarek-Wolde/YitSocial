@@ -4,24 +4,29 @@ import { sign } from "jsonwebtoken";
 import bcrypt from "bcrypt"
 import { StandardResponse } from "../types/response";
 
+
 export const post_SignUp: RequestHandler<unknown, StandardResponse<Yit_User>,Yit_User,unknown> = async (req, res, next) => {
   try {
+   
     const new_user = req.body;
     const hashes_password = await bcrypt.hash(new_user.password, 10);
     new_user.password = hashes_password;
-    const result = await UsersModel.create(new_user);
+    console.log(new_user)
+    const result = await UsersModel.create(new_user)
     res.json({ success: true, data: result }).sendDate;
   } catch (error) {
-    next(error);
+    if(error instanceof Error)
+    next(error.message);
+  next(error)
   }
 };
 
-export const post_SignIn: RequestHandler<unknown, StandardResponse<string>, { email: string; password: string }, unknown> = async (req, res, next) => {
+export const post_SignIn: RequestHandler<unknown, StandardResponse<string>, { loginEmail: string; loginPass: string }, unknown> = async (req, res, next) => {
     try {
-      const { email, password } = req.body;
-      const result = await UsersModel.findOne({ userEmail: email, active: true });
+      const { loginEmail, loginPass } = req.body;
+      const result = await UsersModel.findOne({ userEmail: loginEmail, active: true });
       if (!result) throw new Error("User not found!");
-      const match_password = await bcrypt.compare(password, result.password);
+      const match_password = await bcrypt.compare(loginPass, result.password);
       if (match_password && process.env.Secret_key) {
         const jwt = sign(
           {

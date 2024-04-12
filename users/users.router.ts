@@ -7,7 +7,6 @@ UserRouter.post("/signin", express.json(), post_SignIn);
 UserRouter.patch("/:user_id", deActivate_User);
 
 
-
 //UserRouter.use("/:user_id/picture", VerifyUser, PicRouter);
 
 export default UserRouter;

@@ -1,4 +1,4 @@
-import { ErrorWithStatus } from './custome.error'
+import { ErrorWithStatus } from './error'
 import express, { NextFunction, Response, Request } from 'express'
 
 export function ServerError(error: unknown, req: Request, res: Response, next: NextFunction) {

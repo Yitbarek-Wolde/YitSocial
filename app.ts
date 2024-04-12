@@ -1,22 +1,58 @@
-import express from 'express'
+import express, { NextFunction, Response, Request } from 'express'
 import morgan from "morgan"
-import { ErrorWithStatus } from './types/custome.error'
+import { ErrorWithStatus } from './types/error'
 import cors from 'cors'
 import helmet from 'helmet'
-import { ServerError } from './types/server.error'
+//import { ServerError } from './types/servererror'
+import path from "path";
+import fs from "fs";
+import { Mongo_DB_connect } from './DB_connect'
+import UserRouter from './users/users.router'
 
 
 const app = express()
 
-app.use(helmet())
-app.use(cors())
-
-app.use(morgan('dev'))
+Mongo_DB_connect();
 
 
-app.use('/users')//StudentRouter)
+app.set(`port`, 3001);
+app.set("x-powered-by", false);
+app.use(helmet());
+app.use(cors());
 
-app.all('*',(req, res, next ) => { next (new ErrorWithStatus('Route not found', 404)) }, ServerError)//(req, res, next) => { next(new ErrorWithStatus('Route not found', 404)) })
+// setup logger
+if (process.env.NODE_ENV == "development") {
+  app.use(morgan("dev"));
+} else if (process.env.NODE_ENV == "production") {
+  const accessLogStream = fs.createWriteStream(
+    path.join(__dirname, "access.log"),
+    { flags: "a" }
+  );
+  app.use(morgan("combined", { stream: accessLogStream }));
+} else {
+  console.error("Node Environment not set.");
+}
+
+// start routing here 
+
+app.use('/users',  UserRouter)
+
+//end vaild routs here
 
 
-app.listen(3000, () => console.log(`listening to 3000`))
+app.all("*", (req, res, next) => {
+    next(new ErrorWithStatus("Route not found", 404));
+  });
+  app.use((error: unknown, req: Request, res: Response, next: NextFunction) => {
+    if (error instanceof ErrorWithStatus) {
+      
+      res.status(error.status).send(error.message);
+    } else if (error instanceof Error) {
+      res.status(500).send(error.message);
+    } else {
+      res.status(500).send("Unexpected error occurred");
+    }
+  });
+
+app.listen(app.get("port"), () => {
+    console.log("Listening to 3000");})

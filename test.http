@@ -1,0 +1,11 @@
+
+POST http://127.0.0.1:3001/users/signup
+Content-Type: application/json
+
+{ "userEmail": "testuser",
+    "password": "test",
+    "firstName": "testman",
+    "lastName": "testLast",
+    "userName": "iamtestuser",
+    "userBirthDate": "112233",
+    "userPhoneNumber": "273618736" }
