@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <!--<title> Login and Registration Form in HTML & CSS | CodingLab </title>-->
+    <link rel="stylesheet" href="../src/style.css">
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
+   </head>
+<body>
+  <div class="container">
+    <input type="checkbox" id="flip">
+    <div class="cover">
+      <div class="front">
+        <img src="../Images/frontImg.jpg" alt="">
+        <div class="text">
+          <span class="text-1">Every new friend is a <br> new adventure</span>
+          <span class="text-2">Let's get connected</span>
+        </div>
+      </div>
+      <div class="back">
+        <img class="backImg" src="../Images/backImg.jpg" alt="">
+        <div class="text">
+          <span class="text-1">Complete miles of journey <br> with one step</span>
+          <span class="text-2">Let's get started</span>
+        </div>
+      </div>
+    </div>
+    <div class="forms" id="root">
+      <div className="form-content">
+        <div className="login-form">
+          <div className="title">Login</div>
+        <form action="#" id="login_form">
+           <!-- login starts here --> 
+          <div className="input-boxes">
+            <div className="input-box">
+              <i className="fas fa-envelope"></i>
+               <!-- here put the email --> 
+              <input type="text" placeholder="Enter your email" required />
+            </div>
+            <div className="input-box">
+              <i className="fas fa-lock"></i>
+               <!-- here put the password --> 
+              <input type="password" placeholder="Enter your password" required />
+            </div>
+            <div className="text"><a href="#">Forgot password?</a></div>
+            <div className="button input-box">
+              <input type="submit" value="Sumbit" />
+            </div>
+            <div className="text sign-up-text">Don't have an account? <label for="flip">Sigup now</label></div>
+          </div>
+           <!-- ends here --> 
+      </form>
+    </div>
+      <div className="signup-form">
+        <div className="title">Signup</div>
+      <form action="#">
+      <!-- sign up start --> 
+          <div className="input-boxes">
+            <!--addtions--> 
+            <div className="input-box">
+              <i className="fas fa-user"></i>
+              <input type="text" placeholder="Enter your first name" required />
+            </div>
+            <div className="input-box">
+              <i className="fas fa-user"></i>
+              <input type="text" placeholder="Enter your last name" required />
+            </div>
+            <div className="input-box">
+              <i className="fas fa-user"></i>
+              <input type="text" placeholder="choose a username" required />
+            </div>
+            <div className="input-box">
+              <i className="fas fa-user"></i>
+              <input type="date" placeholder="Enter your date od birth" required />
+            </div>
+            <div className="input-box">
+              <i className="fas fa-user"></i>
+              <input type="number" placeholder="Enter your phone number" required />
+            </div>
+
+            <div className="input-box">
+              <i className="fas fa-envelope"></i>
+              <input type="text" placeholder="Enter your email" required />
+            </div>
+            <div className="input-box">
+              <i className="fas fa-lock"></i>
+              <input type="password" placeholder="Enter your password" required />
+            </div>
+            
+            <div className="button input-box">
+              <input type="submit" value="Sumbit" />
+            </div>
+
+          <!-- gone to front end -->
+            <div className="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
+          </div>
+    </form>
+  </div>
+  </div> 
+    </div>
+  
+    
+  </div>
+</body>
+</html>
