@@ -25,9 +25,11 @@ export const post_SignIn: RequestHandler<unknown, StandardResponse<string>, { lo
     try {
       const { loginEmail, loginPass } = req.body;
       const result = await UsersModel.findOne({ userEmail: loginEmail, active: true });
-      if (!result) throw new Error("User not found!");
-      const match_password = await bcrypt.compare(loginPass, result.password);
-      if (match_password && process.env.Secret_key) {
+      if (!result){
+        res.json({ success: false, data: 'Email or user name not found' }).sendDate;
+      }
+      const match_password = await bcrypt.compare(loginPass, result!.password);
+      if (match_password && process.env.Secret_key && result) {
         const jwt = sign(
           {
             _id: result._id,
@@ -41,6 +43,8 @@ export const post_SignIn: RequestHandler<unknown, StandardResponse<string>, { lo
         );
         res.json({ success: true, data: jwt }).sendDate;
        
+      }else{
+        res.json({ success: false, data: 'Password incorrect!' }).sendDate;
       }
     } catch (error) {
       next(error);
