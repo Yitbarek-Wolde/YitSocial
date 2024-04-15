@@ -8,6 +8,8 @@ import path from "path";
 import fs from "fs";
 import { Mongo_DB_connect } from './DB_connect'
 import UserRouter from './users/users.router'
+import PostRouter from './userPost/post.router'
+import { VerifyUser } from './middleware/verify.users'
 
 
 const app = express()
@@ -36,7 +38,7 @@ if (process.env.NODE_ENV == "development") {
 // start routing here 
 
 app.use('/users', UserRouter)
-
+app.use('.post', VerifyUser, PostRouter)
 //end vaild routs here
 
 
