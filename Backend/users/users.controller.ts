@@ -35,8 +35,7 @@ export const post_SignIn: RequestHandler<unknown, StandardResponse<string>, { lo
             _id: result._id,
             email: result.userEmail,
             userName: result.userName,
-            fullname:
-              result.firstName || "" + " " + result.lastName || "",
+            fullname: result.firstName || "" + " " + result.lastName || "",
             path: result.profilePicture.path,
           },
           process.env.Secret_key
