@@ -1,4 +1,4 @@
-import { Schema, InferSchemaType} from "mongoose";
+import { Schema, InferSchemaType } from "mongoose";
 
 export const CommentSchema = new Schema({
     post_content: { type: String, required: true },

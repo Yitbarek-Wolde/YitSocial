@@ -7,16 +7,16 @@ export const GUEST_PICTURE = {
     size: 150
 }
 const UserSchema = new Schema({
-    userEmail: { type: String, unique: true, required: true},
+    userEmail: { type: String, unique: true, required: true },
     password: { type: String, required: true },
     firstName: { type: String, require: true },
     lastName: { type: String, require: true },
     userName: { type: String, unique: true, require: true },
     userBirthDate: { type: String, require: true },
     userPhoneNumber: { type: String, require: true },
-    active: { type: Boolean, default: true, timestamps: true  },
+    active: { type: Boolean, default: true, timestamps: true },
     userCurrentPayment: { type: Boolean, default: true, timestamps: true },
-    userBio: {type: String, default: "Hi! I'm a new user!"},
+    userBio: { type: String, default: "Hi! I'm a new user!" },
     profilePicture: {
         type: {
             originalname: String,
@@ -24,10 +24,10 @@ const UserSchema = new Schema({
             path: String,
             size: Number
         }, default: GUEST_PICTURE
-    }, 
-    userFriends: [{type: String, unique: false}]
-    
-//some features under consideration
+    },
+    userFriends: [{ type: String, unique: false }]
+
+    //some features under consideration
 
     // userComments: [],
     // userActivity: [],

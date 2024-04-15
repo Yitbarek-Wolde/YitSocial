@@ -35,24 +35,25 @@ if (process.env.NODE_ENV == "development") {
 
 // start routing here 
 
-app.use('/users',  UserRouter)
+app.use('/users', UserRouter)
 
 //end vaild routs here
 
 
 app.all("*", (req, res, next) => {
-    next(new ErrorWithStatus("Route not found", 404));
-  });
-  app.use((error: unknown, req: Request, res: Response, next: NextFunction) => {
-    if (error instanceof ErrorWithStatus) {
-      
-      res.status(error.status).send(error.message);
-    } else if (error instanceof Error) {
-      res.status(500).send(error.message);
-    } else {
-      res.status(500).send("Unexpected error occurred");
-    }
-  });
+  next(new ErrorWithStatus("Route not found", 404));
+});
+app.use((error: unknown, req: Request, res: Response, next: NextFunction) => {
+  if (error instanceof ErrorWithStatus) {
+
+    res.status(error.status).send(error.message);
+  } else if (error instanceof Error) {
+    res.status(500).send(error.message);
+  } else {
+    res.status(500).send("Unexpected error occurred");
+  }
+});
 
 app.listen(app.get("port"), () => {
-    console.log("Listening to 3000");})
+  console.log("Listening to 3000");
+})
