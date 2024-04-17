@@ -38,7 +38,7 @@ if (process.env.NODE_ENV == "development") {
 // start routing here 
 
 app.use('/users', UserRouter)
-app.use('.post', VerifyUser, PostRouter)
+app.use('/post', VerifyUser, PostRouter)
 //end vaild routs here
 
 

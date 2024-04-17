@@ -24,10 +24,10 @@ export const post_UserPost: RequestHandler<unknown, StandardResponse<UserPost>, 
 export const get_UserPosts: RequestHandler<unknown, StandardResponse<UserPost[] | string>, unknown, { action: string; page: number }> = async (req, res, next) => {
     try {
         const { action, page } = req.query;
-        const size = 5;
+        const size = 20;
 
-        if (action === "all") {
-            const result = await PostModel.find()
+        if (true) {
+            const result = await PostModel.find().sort({createdAt: -1})
                 .skip(((page | 1) - 1) * size)
                 .limit(size);
             res.json({ success: true, data: result });

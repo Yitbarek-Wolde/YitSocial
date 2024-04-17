@@ -1,11 +1,7 @@
 
-POST http://127.0.0.1:3001/users/signup
+POST http://127.0.0.1:3001/post
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjE4OGZmYTE5YWJhNzYyMmVjOWI2ZWQiLCJlbWFpbCI6ImhpIiwidXNlck5hbWUiOiJpc193b3JraW5nIiwiZnVsbG5hbWUiOiJoZWxsbyEiLCJwYXRoIjoidXBsb2Fkcy9ndWVzdC5wbmciLCJpYXQiOjE3MTMzMTYwMTZ9.1A-NfMHnm0xqeQKhzMm4DpDnAC6ZI6tU5WSmRv6Dj3U
 Content-Type: application/json
 
-{ "userEmail": "testuser",
-    "password": "test",
-    "firstName": "testman",
-    "lastName": "testLast",
-    "userName": "iamtestuser",
-    "userBirthDate": "112233",
-    "userPhoneNumber": "273618736" }
+{ "post_content":" this again kwebgfopweghpfouahwepfouwehpofuhwepofuhwpeoufhpofhueofh" }
+

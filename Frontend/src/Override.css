@@ -1,0 +1,6 @@
+@media screen and (min-width: 768px) {
+    /* Override styles for smaller screens */
+    .responsive-style-override {
+      width: 500%;
+    }
+  }

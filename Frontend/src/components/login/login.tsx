@@ -1,13 +1,13 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, FormEvent, ChangeEvent, ButtonHTMLAttributes, MouseEvent } from 'react';
 import axios from 'axios';
-
-function LoginSignup() {
+import * as ls from "local-storage";
+function LoginSignup(props: any) {
     const [loginData, setLogin] = useState({ loginEmail: '', loginPass: '' })
     const [signupData, setSignup] = useState({ userEmail: "", password: "", firstName: "", lastName: "", userName: "", userBirthDate: "", userPhoneNumber: "" })
     const [errorMes, setErrormes] = useState({ change: false, message: '' })
-    
-    const handleLogin = async (e: any) => {
+
+    const handleLogin = async (e: FormEvent<HTMLFormElement> | MouseEvent) => {
         e.preventDefault();
         try {
             const response = await axios.post('http://127.0.0.1:3001/users/signin',
@@ -19,18 +19,21 @@ function LoginSignup() {
 
             console.log(response?.data);
 
-
+            
             if (!response.data.success) {
                 setErrormes({ change: true, message: response.data.data })
             } else {
                 setErrormes({ change: false, message: '' })
+                props.setPages('home')
+                ls.set('secret', response.data.data)
+               
             }
         } catch (err) {
             console.log(err + " came here")
         }
     }
 
-    const handleSignup = async (e: any) => {
+    const handleSignup = async (e: FormEvent<HTMLFormElement> | MouseEvent) => {
         e.preventDefault();
         try {
             const response = await axios.post('http://127.0.0.1:3001/users/signup',

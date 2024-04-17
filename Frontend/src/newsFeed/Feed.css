@@ -1,6 +1,6 @@
 body{
     margin-top:20px;
-    background:#ebeef0;
+    background: #7d2ae8;
 }
 
 .img-sm {
@@ -9,7 +9,7 @@ body{
 }
 
 .panel {
-    box-shadow: 0 2px 0 rgba(0,0,0,0.075);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.075); 
     border-radius: 0;
     border: 0;
     margin-bottom: 15px;
@@ -84,7 +84,7 @@ body{
 .btn-trans {
     background-color: transparent;
     border-color: transparent;
-    color: #929292;
+    color: #030803;
 }
 
 .btn-icon {

@@ -26,7 +26,7 @@ export const post_SignIn: RequestHandler<unknown, StandardResponse<string>, { lo
     const { loginEmail, loginPass } = req.body;
     const result = await UsersModel.findOne({ userEmail: loginEmail, active: true });
     if (!result) {
-      res.json({ success: false, data: 'Email or user name not found' }).sendDate;
+      res.json({ success: false, data: 'Email or Username not found!' }).sendDate;
     }
     const match_password = await bcrypt.compare(loginPass, result!.password);
     if (match_password && process.env.Secret_key && result) {
