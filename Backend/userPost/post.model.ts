@@ -8,7 +8,9 @@ const PostSchema = new Schema({
         fullname: String,
         email: String
     },
-    Comments: [CommentSchema]
+    Comments: [CommentSchema],
+    Likes: [],
+    DisLikes: []
 }, { timestamps: true, versionKey: false });
 
 export type UserPost = InferSchemaType<typeof PostSchema>;

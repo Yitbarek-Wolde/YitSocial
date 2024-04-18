@@ -26,7 +26,7 @@ export const get_UserPosts: RequestHandler<unknown, StandardResponse<UserPost[] 
         const { action, page } = req.query;
         const size = 20;
 
-        if (true) {
+        if (action !== "own") {
             const result = await PostModel.find().sort({createdAt: -1})
                 .skip(((page | 1) - 1) * size)
                 .limit(size);
@@ -50,7 +50,7 @@ export const get_UserPost: RequestHandler<{ UserPost_id: string }, StandardRespo
     try {
         const { UserPost_id } = req.params;
         const result = await PostModel.findOne({ _id: UserPost_id });
-        res.json({ success: false, data: result });
+        res.json({ success: true, data: result });
     } catch (error) {
         next(error);
     }
@@ -80,7 +80,39 @@ export const put_UserPost: RequestHandler<{ UserPost_id: string }, StandardRespo
             { $set: { post_content: new_UserPost.post_content } }
         );
 
-        res.json({ success: false, data: result.modifiedCount });
+        res.json({ success: true, data: result.modifiedCount });
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const AddLikes: RequestHandler<{ UserPost_id: string}, StandardResponse<number>, unknown, unknown> = async (req, res, next) => {
+    try {
+      
+        const { UserPost_id } = req.params;
+
+        const result = await PostModel.updateOne(
+            { _id: UserPost_id },
+            { $addToSet: { Likes: req.userInfo.email }, $unset: { DisLikes: req.userInfo.email } }
+        );
+
+        res.json({ success: true, data: result.modifiedCount });
+    } catch (error) {
+        next(error);
+    }
+};
+export const DisAddLikes: RequestHandler<{ UserPost_id: string}, StandardResponse<number>, unknown, unknown> = async (req, res, next) => {
+    try {
+      
+        const { UserPost_id } = req.params;
+
+        const result = await PostModel.updateOne(
+            { _id: UserPost_id },
+            { $addToSet: { DisLikes: req.userInfo.email }, $unset: { Likes: req.userInfo.email } }
+        );
+        
+
+        res.json({ success: true, data: result.modifiedCount });
     } catch (error) {
         next(error);
     }

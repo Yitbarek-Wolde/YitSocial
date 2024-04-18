@@ -1,7 +1,7 @@
 import './App.css';
 import './style.css';
 import LoginSignup from './components/login/login';
-import HomeFeed from './newsFeed/feed';
+import HomeFeed from './components/newsFeed/feed';
 import { useState } from 'react';
 
 

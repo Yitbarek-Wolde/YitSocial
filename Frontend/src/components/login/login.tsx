@@ -2,11 +2,12 @@ import './App.css';
 import { useEffect, useState, FormEvent, ChangeEvent, ButtonHTMLAttributes, MouseEvent } from 'react';
 import axios from 'axios';
 import * as ls from "local-storage";
+import { Route } from 'react-router-dom';
 function LoginSignup(props: any) {
     const [loginData, setLogin] = useState({ loginEmail: '', loginPass: '' })
     const [signupData, setSignup] = useState({ userEmail: "", password: "", firstName: "", lastName: "", userName: "", userBirthDate: "", userPhoneNumber: "" })
     const [errorMes, setErrormes] = useState({ change: false, message: '' })
-
+    const [errorMesSignup, setErrormesSignup] = useState({ change: false, message: '' })
     const handleLogin = async (e: FormEvent<HTMLFormElement> | MouseEvent) => {
         e.preventDefault();
         try {
@@ -44,7 +45,12 @@ function LoginSignup(props: any) {
                 }
             );
             console.log(response?.data);
-
+            if (!response.data.success) {
+                setErrormesSignup({ change: true, message: response.data.data })
+            }else{
+                    //Route()
+                    
+            }
 
         } catch (err) {
             console.log(err + " came here")
@@ -100,6 +106,7 @@ function LoginSignup(props: any) {
                         <div className="signup-form">
                             <form action="#">
                                 {/*<!-- sign up start --!>*/}
+                                <p style={{color:"red", fontWeight: 'bolder'}}>{errorMesSignup.change && errorMesSignup.message}</p>
                                 <div className="input-boxes">
                                     {/*<!--addtions--!>*/}
                                     <div className="input-box">
@@ -136,8 +143,8 @@ function LoginSignup(props: any) {
                                         <input type="submit" value="Sign Up" onClick={handleSignup} />
                                     </div>
 
-                                    {/*<!-- gone to front end --!>*/}
-                                    <div className="text sign-up-text">Already have an account? <label htmlFor="flip">Login now</label></div>
+                                    {/*<!-- go to front end --!>*/}
+                                    <div className="text sign-up-text">Already have an account? <label htmlFor="flip" >Login now</label></div>
                                 </div>
                             </form>
                         </div>

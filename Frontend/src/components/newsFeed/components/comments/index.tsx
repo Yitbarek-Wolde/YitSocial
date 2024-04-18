@@ -11,11 +11,12 @@ export default function Comments() {
                     <p>this is a comment.</p>
                     <div className="pad-ver">
                         <div className="btn-group">
-                            <a className="btn btn-sm btn-default btn-hover-success active" href="#"><i className="fa fa-thumbs-up"></i> You Like it</a>
+                            <a className="btn btn-sm btn-default btn-hover-success active" href="#"><i className="fa fa-thumbs-up"></i></a>
                             <a className="btn btn-sm btn-default btn-hover-danger" href="#"><i className="fa fa-thumbs-down"></i></a>
                         </div>
-                        <a className="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a>
+                       
                     </div>
+                  
                     <hr />
                 </div>
             </div>

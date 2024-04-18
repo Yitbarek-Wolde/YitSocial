@@ -5,9 +5,13 @@ import bcrypt from "bcrypt"
 import { StandardResponse } from "../types/response";
 
 
-export const post_SignUp: RequestHandler<unknown, StandardResponse<Yit_User>, Yit_User, unknown> = async (req, res, next) => {
+export const post_SignUp: RequestHandler<unknown, StandardResponse<Yit_User | string>, Yit_User, unknown> = async (req, res, next) => {
   try {
+    const check_result = await UsersModel.findOne({ userEmail: req.body.userEmail, active: true });
+    if (check_result){
+      res.json({ success: false, data: 'Email already exists!' }).sendDate;
 
+    }
     const new_user = req.body;
     const hashes_password = await bcrypt.hash(new_user.password, 10);
     new_user.password = hashes_password;
