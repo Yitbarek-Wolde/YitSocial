@@ -93,7 +93,7 @@ export const AddLikes: RequestHandler<{ UserPost_id: string}, StandardResponse<n
 
         const result = await PostModel.updateOne(
             { _id: UserPost_id },
-            { $addToSet: { Likes: req.userInfo.email }, $unset: { DisLikes: req.userInfo.email } }
+            { $addToSet: { Likes: req.userInfo.email }, $pull: { DisLikes: req.userInfo.email } }
         );
 
         res.json({ success: true, data: result.modifiedCount });
@@ -108,7 +108,7 @@ export const DisAddLikes: RequestHandler<{ UserPost_id: string}, StandardRespons
 
         const result = await PostModel.updateOne(
             { _id: UserPost_id },
-            { $addToSet: { DisLikes: req.userInfo.email }, $unset: { Likes: req.userInfo.email } }
+            { $addToSet: { DisLikes: req.userInfo.email }, $pull: { Likes: req.userInfo.email } }
         );
         
 

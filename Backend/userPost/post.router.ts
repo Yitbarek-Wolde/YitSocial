@@ -5,8 +5,8 @@ const PostRouter = express.Router({ mergeParams: true });
 
 PostRouter.post("/", express.json(), post_UserPost);
 PostRouter.get("/", get_UserPosts);
-PostRouter.put("/like/:UserPost_id", AddLikes);
-PostRouter.put("/dislike/:UserPost_id", DisAddLikes);
+PostRouter.get("/like/:UserPost_id", AddLikes);
+PostRouter.get("/dislike/:UserPost_id", DisAddLikes);
 PostRouter.get("/:UserPost_id", get_UserPost);
 PostRouter.delete("/:UserPost_id", delete_UserPost);
 PostRouter.put("/:UserPost_id", express.json(), put_UserPost);

@@ -25,7 +25,7 @@ export default function Postedpost() {
 
     async function giveLike(_id: string) {
         console.log(_id, ' id to')
-        const response = await axios.put(`http://127.0.0.1:3001/post/like/${_id}`, {
+        const response = await axios.get(`http://127.0.0.1:3001/post/like/${_id}`, {
             headers: {
                 Authorization: `Bearer ${ls.get('secret')}`
             }
@@ -33,7 +33,7 @@ export default function Postedpost() {
     }
     async function giveDisLike(_id: string) {
 
-        const response = await axios.put(`http://127.0.0.1:3001/post/dislike/${_id}`, {
+        const response = await axios.get(`http://127.0.0.1:3001/post/dislike/${_id}`, {
             headers: {
                 Authorization: `Bearer ${ls.get('secret')}`
             }
