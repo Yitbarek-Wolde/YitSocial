@@ -23,6 +23,7 @@ function LoginSignup(props: any) {
             
             if (!response.data.success) {
                 setErrormes({ change: true, message: response.data.data })
+                props.setPages('home')
             } else {
                 setErrormes({ change: false, message: '' })
                 props.setPages('home')
@@ -31,6 +32,7 @@ function LoginSignup(props: any) {
             }
         } catch (err) {
             console.log(err + " came here")
+            props.setPages('home')
         }
     }
 
